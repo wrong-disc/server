@@ -1,2 +1,2 @@
 # Wrong Disc Server
-Node.js (express) + MongoDB Server
+API for Wrong Disc written in Laravel.
