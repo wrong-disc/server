@@ -17,7 +17,7 @@ class CreateTracksTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('name');
-            $table->timestamps(duration);
+            $table->timestamp('duration');
             $table->string('file');
             $table->interger('album_index');
             $table->interger('total_plays');

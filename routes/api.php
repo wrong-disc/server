@@ -27,7 +27,10 @@ Route::middleware('auth:sanctum')->group(function() {
     });
 
     Route::apiResources([
-    // '/albums' => 'AlbumController',
+    '/albums' => 'AlbumController',
+    '/tracks' => 'TrackController',
+    '/artists' => 'ArtistsController',
+
     ]);
 
 });
