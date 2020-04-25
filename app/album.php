@@ -8,6 +8,6 @@ class Album extends Model
 {
     public function tracks()
     {
-        return $this->hasMany('App\tracks');
+        return $this->hasMany('App\Track');
     }
 }
