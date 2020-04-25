@@ -24,6 +24,7 @@ class CreateTracksTable extends Migration
             $table->integer('album_index');
             $table->integer('total_plays');
             $table->timestamps();
+
         });
     }
 

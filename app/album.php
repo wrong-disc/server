@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class album extends Model
+class Album extends Model
 {
-    //
+    return $this->hasMany('App\tracks');
 }

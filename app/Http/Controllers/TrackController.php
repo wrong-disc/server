@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\track;
+use App\Track;
 use Illuminate\Http\Request;
 
 class TrackController extends Controller
@@ -31,10 +31,10 @@ class TrackController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\track  $track
+     * @param  \App\Track  $track
      * @return \Illuminate\Http\Response
      */
-    public function show(track $track)
+    public function show(Track $track)
     {
         //
     }
@@ -43,10 +43,10 @@ class TrackController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\track  $track
+     * @param  \App\Track  $track
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, track $track)
+    public function update(Request $request, Track $track)
     {
         //
     }
@@ -54,10 +54,10 @@ class TrackController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\track  $track
+     * @param  \App\Track  $track
      * @return \Illuminate\Http\Response
      */
-    public function destroy(track $track)
+    public function destroy(Track $track)
     {
         //
     }

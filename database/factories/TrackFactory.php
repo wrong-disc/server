@@ -14,6 +14,5 @@ $factory->define(Track::class, function (Faker $faker) {
         'album_index' => '5',
         'artist_id' => '1',
         'album_id' => '1',
-
     ];
 });

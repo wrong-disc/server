@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\album;
+use App\Album;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
@@ -31,10 +31,10 @@ class AlbumController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\album  $album
+     * @param  \App\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function show(album $album)
+    public function show(Album $album)
     {
         //
     }
@@ -43,10 +43,10 @@ class AlbumController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\album  $album
+     * @param  \App\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, album $album)
+    public function update(Request $request, Album $album)
     {
         //
     }
@@ -54,10 +54,10 @@ class AlbumController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\album  $album
+     * @param  \App\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function destroy(album $album)
+    public function destroy(Album $album)
     {
         //
     }
