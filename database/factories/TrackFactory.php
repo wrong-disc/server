@@ -12,5 +12,8 @@ $factory->define(Track::class, function (Faker $faker) {
         'file' => $faker->sentence(2),
         'total_plays' => '4',
         'album_index' => '5',
+        'artist_id' => '1',
+        'album_id' => '1',
+
     ];
 });

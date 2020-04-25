@@ -19,6 +19,8 @@ class CreateTracksTable extends Migration
             $table->string('name');
             $table->timestamp('duration');
             $table->string('file');
+            $table->integer('artist_id');
+            $table->integer('album_id');
             $table->integer('album_index');
             $table->integer('total_plays');
             $table->timestamps();
