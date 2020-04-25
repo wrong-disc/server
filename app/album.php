@@ -6,5 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Album extends Model
 {
-    return $this->hasMany('App\tracks');
+    public function tracks()
+    {
+        return $this->hasMany('App\tracks');
+    }
 }
