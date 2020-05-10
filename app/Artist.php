@@ -10,4 +10,8 @@ class Artist extends Model
     {
         return $this->hasMany('App\Track');
     }
+
+    public function albums() {
+        return $this->hasMany('App\Album');
+    }
 }
