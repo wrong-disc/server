@@ -36,7 +36,7 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
-        //
+        return $artist->load("albums.artist");
     }
 
     /**

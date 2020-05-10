@@ -34,9 +34,17 @@ class AlbumController extends Controller
      * @param  \App\Album  $album
      * @return \Illuminate\Http\Response
      */
-    public function show(Album $album)
+    public function show(Album $album, Request $request)
     {
-        return $album->load(["artist", "tracks.artist"]);
+        $album->load(["artist", "tracks.artist"]); // Obtem o album (com artista e faixa + artista)
+
+        $album->tracks = $album->tracks
+        ->map(function($track) use ($request) { // para cada faixa do album
+            $isFavourite = $track->users->contains($request->user()); // verifica se o utilizador autenticado está na lista de favoritos
+            $track->favourite = $isFavourite; // e retorna true ou false para um novo campo "favourite"
+        });
+
+        return $album;
     }
 
     /**

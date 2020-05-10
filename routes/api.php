@@ -26,11 +26,16 @@ Route::middleware('auth:sanctum')->group(function() {
         return $request->user();
     });
 
+    Route::get('/favourites', 'FavouriteController@index');
+
+    Route::post('/favourites/{track_id}', 'FavouriteController@store');
+
+    Route::delete('/favourites/{track_id}', 'FavouriteController@destroy');
+
     Route::apiResources([
     '/albums' => 'AlbumController',
     '/tracks' => 'TrackController',
-    '/artists' => 'ArtistsController',
-
+    '/artists' => 'ArtistController',
     ]);
 
 });

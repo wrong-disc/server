@@ -37,7 +37,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function track()
+    public function tracks()
     {
         return $this->belongsToMany('App\Track', 'favourites');
     }

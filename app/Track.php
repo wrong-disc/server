@@ -14,9 +14,9 @@ class Track extends Model
     public function artist()
     {
         return $this->belongsTo('App\Artist');
-    }   
-     
-    public function user()
+    }
+
+    public function users()
     {
         return $this->belongsToMany('App\User', 'favourites');
     }
