@@ -32,9 +32,10 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::delete('/favourites/{track_id}', 'FavouriteController@destroy');
 
+    Route::get('/search/{query}', 'SearchController@search');
+
     Route::apiResources([
     '/albums' => 'AlbumController',
-    '/tracks' => 'TrackController',
     '/artists' => 'ArtistController',
     ]);
 
