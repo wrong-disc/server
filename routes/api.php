@@ -35,8 +35,15 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/search/{query}', 'SearchController@search');
 
     Route::apiResources([
-    '/albums' => 'AlbumController',
-    '/artists' => 'ArtistController',
+        '/albums' => 'AlbumController',
+        '/artists' => 'ArtistController',
+    ]);
+
+    Route::get('/tracks/{id}', 'TrackController@show');
+
+    Route::get('/tracks/{id}/stream', [
+        'as' => 'audio',
+        'uses' => 'TrackController@stream'
     ]);
 
 });
