@@ -46,4 +46,8 @@ Route::middleware('auth:sanctum')->group(function() {
         'uses' => 'TrackController@stream'
     ]);
 
+    Route::get('/auth/token', function (Request $request){
+        return  $request->header("X-XSRF-TOKEN");
+    });
+
 });

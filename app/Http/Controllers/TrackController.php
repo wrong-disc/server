@@ -7,6 +7,7 @@ use Illuminate\Http\Response;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Illuminate\Support\Facades\Storage;
 use App\Track;
+use Illuminate\Support\Facades\Gate;
 
 class TrackController extends Controller
 {
@@ -25,6 +26,12 @@ class TrackController extends Controller
 		$response = new BinaryFileResponse($path);
 		BinaryFileResponse::trustXSendfileTypeHeader();
 		return $response;
+    }
+
+    public function store(Request $request){
+        Gate::authorize('add-track');
+        Track::insert($request);
+        
     }
 
 }

@@ -9,7 +9,6 @@ use Carbon\Carbon;
 $factory->define(Track::class, function (Faker $faker) {
     return [
         'title' => $faker->sentence(2),
-        'name' => $faker->sentence(2),
         'file' => $faker->sentence(2),
         'duration' => Carbon::createFromTimestamp(0)->addMinutes(2)->addSeconds(42),
         'total_plays' => '4',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Artist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ArtistController extends Controller
 {
@@ -14,7 +15,8 @@ class ArtistController extends Controller
      */
     public function index()
     {
-        //
+        Gate::authorize('list-artist');
+        return Artist::all();
     }
 
     /**
@@ -59,6 +61,13 @@ class ArtistController extends Controller
      */
     public function destroy(Artist $artist)
     {
-        //
+        Gate::authorize('delete-artist');
+        foreach ($artist->albums as $album){
+            foreach ($album->tracks as $track){
+                $track->delete();
+            }
+            $album->delete();
+        }
+        $artist->delete();
     }
 }
