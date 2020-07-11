@@ -50,6 +50,18 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isAdmin() || $user->isEditor();
         });
 
+        Gate::define('edit-artist', function ($user) {
+            return $user->isAdmin() || $user->isEditor();
+        });
+
+        Gate::define('edit-album', function ($user) {
+            return $user->isAdmin() || $user->isEditor();
+        });
+
+        Gate::define('edit-track', function ($user) {
+            return $user->isAdmin() || $user->isEditor();
+        });
+
         Gate::define('delete-artist', function ($user) {
             return $user->isAdmin() || $user->isEditor();
         });

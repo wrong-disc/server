@@ -68,7 +68,12 @@ class AlbumController extends Controller
      */
     public function update(Request $request, Album $album)
     {
-        //
+        Gate::authorize('edit-album');
+        return $album->update([
+            'title' => $request->title,
+            'cover' => 'https://upload.wikimedia.org/wikipedia/pt/7/79/The_Evolution_of_Man_de_Example.jpg',
+            'artist_id' => $request->artist_id 
+        ]);
     }
 
     /**

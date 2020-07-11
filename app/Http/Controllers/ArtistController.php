@@ -54,7 +54,11 @@ class ArtistController extends Controller
      */
     public function update(Request $request, Artist $artist)
     {
-        //
+        Gate::authorize('edit-artist');
+        return $artist->update([
+            'name' => $request->name,
+            'photo' => 'https://images.unsplash.com/photo-1549349807-4575e87c7e6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+        ]);
     }
 
     /**

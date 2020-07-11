@@ -49,6 +49,18 @@ class TrackController extends Controller
         ]);
     }
 
+    public function update(Request $request, Track $track){
+        Gate::authorize('edit-track');
+        return $track->update([
+            'title' => $request->title,
+            'artist_id' => $request->artist_id,
+            'album_id' => $request->album_id,
+            'album_index' => $request->album_index,
+            'file' => '',
+            'duration' => Carbon::createFromTimestamp(0)->addMinutes(2)->addSeconds(42)
+        ]);
+    }
+
     public function destroy(Track $track)
     {
         Gate::authorize('delete-track');
