@@ -11,6 +11,10 @@ class Artist extends Model
 
     public $asYouType = true;
 
+    protected $fillable = [
+        'name', 'photo'
+    ];
+
     /**
      * Get the indexable data array for the model.
      *

@@ -26,6 +26,14 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::define('add-artist', function ($user) {
+            return $user->isAdmin() || $user->isEditor();
+        });
+
+        Gate::define('add-album', function ($user) {
+            return $user->isAdmin() || $user->isEditor();
+        });
+
         Gate::define('add-track', function ($user) {
             return $user->isAdmin() || $user->isEditor();
         });
@@ -34,7 +42,23 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isAdmin() || $user->isEditor();
         });
 
+        Gate::define('list-album', function ($user) {
+            return $user->isAdmin() || $user->isEditor();
+        });
+
+        Gate::define('list-track', function ($user) {
+            return $user->isAdmin() || $user->isEditor();
+        });
+
         Gate::define('delete-artist', function ($user) {
+            return $user->isAdmin() || $user->isEditor();
+        });
+
+        Gate::define('delete-album', function ($user) {
+            return $user->isAdmin() || $user->isEditor();
+        });
+
+        Gate::define('delete-track', function ($user) {
             return $user->isAdmin() || $user->isEditor();
         });
     }

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Album;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+
 
 class AlbumController extends Controller
 {
@@ -14,9 +16,14 @@ class AlbumController extends Controller
      */
     public function index()
     {
+        Gate::authorize('list-album');
         return Album::with("artist")->get();
     }
 
+    public function explore()
+    {
+        return Album::with("artist")->get();
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -25,7 +32,12 @@ class AlbumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Gate::authorize('add-album');
+        return Album::create([
+            'title' => $request->title,
+            'cover' => 'https://upload.wikimedia.org/wikipedia/pt/7/79/The_Evolution_of_Man_de_Example.jpg',
+            'artist_id' => $request->artist_id 
+        ]);
     }
 
     /**
@@ -67,6 +79,10 @@ class AlbumController extends Controller
      */
     public function destroy(Album $album)
     {
-        //
+        Gate::authorize('delete-album');
+        foreach ($album->tracks as $track){
+            $track->delete();
+        }
+        $album->delete();
     }
 }

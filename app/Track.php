@@ -11,6 +11,10 @@ class Track extends Model
 
     public $asYouType = true;
 
+    protected $fillable = [
+        'title', 'artist_id', 'album_id', 'album_index', 'duration', 'file', 'total_plays'
+    ];
+
     /**
      * Get the indexable data array for the model.
      *

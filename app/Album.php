@@ -11,6 +11,10 @@ class Album extends Model
 
     public $asYouType = true;
 
+    protected $fillable = [
+        'title', 'cover', 'artist_id'
+    ];
+
     /**
      * Get the indexable data array for the model.
      *
