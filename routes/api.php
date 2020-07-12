@@ -21,11 +21,6 @@ Route::get('/logout', 'UserController@logout');
 
 Route::middleware('auth:sanctum')->group(function() {
 
-    // Get authenticated user
-    Route::get('/user', function(Request $request) {
-        return $request->user();
-    });
-
     Route::get('/favourites', 'FavouriteController@index');
 
     Route::post('/favourites/{track_id}', 'FavouriteController@store');
@@ -40,15 +35,15 @@ Route::middleware('auth:sanctum')->group(function() {
         '/albums' => 'AlbumController',
         '/artists' => 'ArtistController',
         '/tracks' => 'TrackController',
+        '/users' => 'UserController'
     ]);
+
+    Route::get('/user', 'AuthUserController@index');
+
+    Route::put('/user', 'AuthUserController@update');
 
     Route::get('/tracks/{id}/stream', [
         'as' => 'audio',
         'uses' => 'TrackController@stream'
     ]);
-
-    Route::get('/auth/token', function (Request $request){
-        return  $request->header("X-XSRF-TOKEN");
-    });
-
 });

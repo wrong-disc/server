@@ -50,6 +50,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isAdmin() || $user->isEditor();
         });
 
+        Gate::define('list-user', function ($user) {
+            return $user->isAdmin();
+        });
+
         Gate::define('edit-artist', function ($user) {
             return $user->isAdmin() || $user->isEditor();
         });
@@ -62,6 +66,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user->isAdmin() || $user->isEditor();
         });
 
+        Gate::define('edit-user', function ($user) {
+            return $user->isAdmin();
+        });
+
         Gate::define('delete-artist', function ($user) {
             return $user->isAdmin() || $user->isEditor();
         });
@@ -72,6 +80,14 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('delete-track', function ($user) {
             return $user->isAdmin() || $user->isEditor();
+        });
+
+        Gate::define('delete-user', function ($user) {
+            return $user->isAdmin();
+        });
+
+        Gate::define('view-user', function ($user) {
+            return $user->isAdmin();
         });
     }
 }
