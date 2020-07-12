@@ -16,6 +16,15 @@ class Track extends Model
     ];
 
     /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'duration',
+    ];
+
+    /**
      * Get the indexable data array for the model.
      *
      * @return array

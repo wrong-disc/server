@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Artist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
+
 
 class ArtistController extends Controller
 {
@@ -28,9 +30,16 @@ class ArtistController extends Controller
     public function store(Request $request)
     {
         Gate::authorize('add-artist');
-        return Artist::create([
+
+        $photo_url = null;
+        if($request->photo) {
+            Storage::makeDirectory('public/artist-images');
+            $photo_url = 'storage/' . $request->photo->store('artist-images', 'public');
+        }
+
+        return Artist::create(  [
             'name' => $request->name,
-            'photo' => 'https://images.unsplash.com/photo-1549349807-4575e87c7e6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+            'photo' => $photo_url
         ]);
     }
 
@@ -55,9 +64,16 @@ class ArtistController extends Controller
     public function update(Request $request, Artist $artist)
     {
         Gate::authorize('edit-artist');
+
+        $photo_url = null;
+        if($request->photo) {
+            Storage::makeDirectory('public/artist-images');
+            $photo_url = 'storage/' . $request->photo->store('artist-images', 'public');
+        }
+
         return $artist->update([
             'name' => $request->name,
-            'photo' => 'https://images.unsplash.com/photo-1549349807-4575e87c7e6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80'
+            'photo' => $photo_url
         ]);
     }
 

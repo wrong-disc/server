@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b27b3a342067f099232e11eb0f8ba24",
+    "content-hash": "39ce8ba714370bda19b48e0f33fafeaf",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3704,16 +3704,16 @@
         },
         {
             "name": "teamtnt/laravel-scout-tntsearch-driver",
-            "version": "v8.1.0",
+            "version": "v8.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/teamtnt/laravel-scout-tntsearch-driver.git",
-                "reference": "9164556d238424f2a63ac6ed5c8c92a340b99dc0"
+                "reference": "a13b7cfe78a70feaf061071a4b681d449b59d875"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/teamtnt/laravel-scout-tntsearch-driver/zipball/9164556d238424f2a63ac6ed5c8c92a340b99dc0",
-                "reference": "9164556d238424f2a63ac6ed5c8c92a340b99dc0",
+                "url": "https://api.github.com/repos/teamtnt/laravel-scout-tntsearch-driver/zipball/a13b7cfe78a70feaf061071a4b681d449b59d875",
+                "reference": "a13b7cfe78a70feaf061071a4b681d449b59d875",
                 "shasum": ""
             },
             "require": {
@@ -3767,7 +3767,7 @@
                 "search",
                 "tntsearch"
             ],
-            "time": "2020-03-09T15:17:59+00:00"
+            "time": "2020-05-12T16:42:57+00:00"
         },
         {
             "name": "teamtnt/tntsearch",

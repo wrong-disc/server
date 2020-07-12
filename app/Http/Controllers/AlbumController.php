@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Album;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 
 class AlbumController extends Controller
@@ -33,10 +34,17 @@ class AlbumController extends Controller
     public function store(Request $request)
     {
         Gate::authorize('add-album');
+
+        $cover_url = null;
+        if($request->cover) {
+            Storage::makeDirectory('public/album-images');
+            $cover_url = 'storage/' . $request->cover->store('album-images', 'public');
+        }
+
         return Album::create([
             'title' => $request->title,
-            'cover' => 'https://upload.wikimedia.org/wikipedia/pt/7/79/The_Evolution_of_Man_de_Example.jpg',
-            'artist_id' => $request->artist_id 
+            'cover' => $cover_url,
+            'artist_id' => $request->artist_id
         ]);
     }
 
@@ -69,10 +77,17 @@ class AlbumController extends Controller
     public function update(Request $request, Album $album)
     {
         Gate::authorize('edit-album');
+
+        $cover_url = null;
+        if($request->cover) {
+            Storage::makeDirectory('public/album-images');
+            $cover_url = 'storage/' . $request->cover->store('album-images', 'public');
+        }
+
         return $album->update([
             'title' => $request->title,
-            'cover' => 'https://upload.wikimedia.org/wikipedia/pt/7/79/The_Evolution_of_Man_de_Example.jpg',
-            'artist_id' => $request->artist_id 
+            'cover' => $cover_url,
+            'artist_id' => $request->artist_id
         ]);
     }
 

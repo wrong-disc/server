@@ -32,33 +32,53 @@ class TrackController extends Controller
         $track = Track::find($id);
         $path = Storage::disk('local')->path($track->file);
 		$response = new BinaryFileResponse($path);
-		BinaryFileResponse::trustXSendfileTypeHeader();
+        BinaryFileResponse::trustXSendfileTypeHeader();
+        $track->total_plays += 1;
+        $track->save();
 		return $response;
     }
 
     public function store(Request $request){
         Gate::authorize('add-track');
-        return Track::create([
+
+        $data = [
             'title' => $request->title,
             'artist_id' => $request->artist_id,
             'album_id' => $request->album_id,
             'album_index' => $request->album_index,
-            'file' => '',
-            'duration' => Carbon::createFromTimestamp(0)->addMinutes(2)->addSeconds(42),
+            'duration' => Carbon::createFromTimestamp(0)->addSeconds($request->duration),
             'total_plays' => 0
-        ]);
+        ];
+
+        $file_url = null;
+        if($request->file != null) {
+            Storage::makeDirectory('track-files');
+            $file_url = $request->file->store('track-files');
+            $data['file'] = $file_url;
+        }
+
+        return Track::create($data);
     }
 
     public function update(Request $request, Track $track){
         Gate::authorize('edit-track');
-        return $track->update([
+
+        $data = [
             'title' => $request->title,
             'artist_id' => $request->artist_id,
             'album_id' => $request->album_id,
             'album_index' => $request->album_index,
-            'file' => '',
-            'duration' => Carbon::createFromTimestamp(0)->addMinutes(2)->addSeconds(42)
-        ]);
+            'duration' => Carbon::createFromTimestamp(0)->addSeconds($request->duration)
+        ];
+
+        $file_url = null;
+        if($request->file != null && !is_string($request->file)) {
+            Storage::makeDirectory('track-files');
+            $file_url = $request->file->store('track-files');
+            $data['file'] = $file_url;
+        }
+
+        return $track->update($data);
     }
 
     public function destroy(Track $track)

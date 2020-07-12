@@ -30,7 +30,8 @@ class Album extends Model
 
     public function tracks()
     {
-        return $this->hasMany('App\Track');
+        return $this->hasMany('App\Track')
+        ->orderBy('album_index');
     }
 
     public function artist() {
