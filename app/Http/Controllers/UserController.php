@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Gate;
 
 class UserController extends Controller {
 
@@ -34,6 +35,11 @@ class UserController extends Controller {
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:4'],
         ]);
+    }
+    
+    public function index(Request $request){
+        Gate::authorize('list-user');
+        return User::where("id","!=",$request->user()->id)->get();
     }
 
     /**
@@ -77,4 +83,30 @@ class UserController extends Controller {
         ], 200);
     }
 
+    public function update(Request $request, User $user) {
+        Gate::authorize('edit-user');
+        $data =[
+            'name' => $request->name,
+            'email' => $request->email,
+            'role' => $request->role
+        ];
+        if($request->password != null){
+           $data ["password"] = Hash::make($request->password);
+        }
+        return $user->update($data);
+    }
+
+    public function show(User $user){
+        Gate::authorize('view-user');
+        return $user;
+    }
+
+    public function destroy(User $user)
+    {
+        Gate::authorize('delete-user');
+        foreach($user->tracks as $track){
+            $track->pivot->delete();
+        }
+        $user->delete();
+    }   
 }
